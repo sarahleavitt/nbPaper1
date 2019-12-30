@@ -27,7 +27,7 @@ library(roxygen2)
 
 #### Batch Mode ####
 
-setwd("/project/sv-thesis/dissertation_code/")
+setwd("/project/sv-thesis/nbPaper1/")
 #Getting sample size from the arguements
 args <- commandArgs(trailingOnly = TRUE)
 sampleSize <- as.numeric(args[])
@@ -39,7 +39,7 @@ nSim <- 10
 
 #### Interactive Mode ####
 
-# setwd("~/Boston University/Dissertation/dissertation_code")
+# setwd("~/Boston University/Dissertation/nbPaper1")
 # iTask <- 2
 # sampleSize <- 50
 # nSim <- 1
@@ -48,12 +48,12 @@ nSim <- 10
 ########### Getting access to functions in other programs ##############
 
 load_all("../nbTransmission")
-source("SimOutbreak.R")
-source("SimulateOutbreakS.R")
-source("SimCovariates.R")
-source("PerformInterval.R")
-source("PerformRandom.R")
-source("SimEvaluate.R")
+source("../nbSimulation/SimOutbreak.R")
+source("../nbSimulation/SimulateOutbreakS.R")
+source("../nbSimulation/SimCovariates.R")
+source("../nbSimulation/PerformInterval.R")
+source("../nbSimulation/PerformRandom.R")
+source("../nbSimulation/SimEvaluate.R")
 source("SampleSizeRun.R")
 
 

@@ -26,7 +26,7 @@ source("SimulateOutbreakS.R")
 
 #### Batch Mode ####
 
-setwd("/project/sv-thesis/dissertation_code/")
+setwd("/project/sv-thesis/nbPaper1/")
 #Finding the task number for the run
 iTask <- as.numeric(Sys.getenv("SGE_TASK_ID"))
 #The number of simulations per split
@@ -34,14 +34,14 @@ nSim <- 10
 
 #### Interactive Mode ####
 
-# setwd("~/Boston University/Dissertation/dissertation_code")
+# setwd("~/Boston University/Dissertation/nbPaper1")
 # iTask <- 1
 # nSim <- 2
 
 
 ################## Setting the oubreak parameters #################
 
-#Effective population size times generation time (1 day or 1/365 years)
+#Effective population size times generation time
 neg <- 0.25
 pi <- 1
 #Sets reproductive number to off.r if off.p = 0.5

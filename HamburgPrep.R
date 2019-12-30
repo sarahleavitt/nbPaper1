@@ -6,7 +6,7 @@
 # This program reads in and formats the Hamburg data to prepare for analysis
 #################################################################################
 
-setwd("~/Boston University/Dissertation/dissertation_code")
+setwd("~/Boston University/Dissertation")
 rm(list = ls())
 
 library(dplyr)
@@ -34,7 +34,7 @@ library(stringdist)
 #Study: HH = Hanseatic city, Hamburg, SH = Schleswig-Holstein
 #Branch: HC = Hamburg clone, UN = Unsuccessful strains
 
-dem <- read.table("../Datasets/HamburgDemographic_corrected.txt",
+dem <- read.table("Datasets/HamburgDemographic_corrected.txt",
                   header = TRUE, stringsAsFactors = FALSE)
 
 
@@ -59,7 +59,7 @@ cont <- cbind.data.frame("Key" = c("5687/01", "4576/00", "6056/00", "1078/00",
 #SNPs: String with sequence from all locations that differed across the isolates (85 total)
 #IsolationMY: month/year of isolate isolation
 
-gen <- read.table("../Datasets/HamburgGenetics.txt", header = TRUE, stringsAsFactors = FALSE)
+gen <- read.table("Datasets/HamburgGenetics.txt", header = TRUE, stringsAsFactors = FALSE)
 gen <- (gen
         %>% select(Key, IsolationMY, SNPs)
         %>% filter(Key != "Ref")
@@ -188,8 +188,8 @@ hamPair <- (snpDistDf
 
 
 ## Saving datasets ##
-saveRDS(hamInd, "../Datasets/HamburgInd.rds")
-saveRDS(hamPair, "../Datasets/HamburgPair.rds")
+saveRDS(hamInd, "Datasets/HamburgInd.rds")
+saveRDS(hamPair, "Datasets/HamburgPair.rds")
 
 
 
