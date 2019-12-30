@@ -1,0 +1,30 @@
+#!/bin/bash -l
+
+# Project name
+#$ -P sv-thesis
+
+#Time limit
+#$ -l h_rt=48:00:00
+
+#Name a job
+#$ -N Genome
+
+#join error and output stream
+#$ -j y
+
+#Send email when job ends or aborts
+#$-m ea
+
+#Name the log file
+##$-o SimLog
+
+#This line runs the set of nSim simulations this many times
+#$-t 1-10
+
+#Other options that were in script from JB
+#$-l mem_per_core=8G
+#$-pe omp 8
+#$-l cpu_arch=!bulldozer
+
+module load R/3.4.0
+time Rscript GenomeTesting.R
