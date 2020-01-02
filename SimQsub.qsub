@@ -26,7 +26,8 @@
 #$-pe omp 8
 #$-l cpu_arch=!bulldozer
 
-#Argument is the sample size
+#Argument is the sample size and the observation date
+#(1 for infection date and 2 for sampling date)
 module load R/3.6.0
 time Rscript PerformSimulation.R $1 $2
 
