@@ -15,10 +15,11 @@ set.seed(103020)
 library(dplyr)
 library(purrr)
 library(tidyr)
+library(ggplot2)
 library(devtools)
 
 #Sourcing functions
-load_all("../nbTransmission")
+load_all("nbTransmission")
 source("nbSimulation/PerformRandom.R")
 source("nbSimulation/PerformInterval.R")
 

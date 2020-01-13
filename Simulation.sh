@@ -1,12 +1,11 @@
 #!/bin/bash
 
-
 #Running the main simulation
-#(sample size = 500, observation date = 1 (infection date)
+#sample size = 500, observation date = 1 (infection date)
 qsub -N FullSimulation SimQsub.qsub 500 1
 
 #Running the simulation using sampling date
-#(sample size = 500, observation date = 1 (infection date)
+#sample size = 500, observation date = 2 (sampling date)
 qsub -N SampleDate SimQsub.qsub 500 2
 
 #Running the genome length analysis
