@@ -29,7 +29,7 @@ sampleSizeRun <- function(){
   
   #Subseting to the pairs with the potential infector observed before the infectee
   covarOrderedPair <- (covarPair
-                       %>% filter(observationDiff > 0)
+                       %>% filter(observationDate.2 > observationDate.1)
                        %>% mutate(snpClose = ifelse(snpDist < thresholds[1], TRUE,
                                              ifelse(snpDist > thresholds[2], FALSE, NA)))
   )

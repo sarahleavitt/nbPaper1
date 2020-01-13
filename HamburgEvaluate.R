@@ -102,7 +102,7 @@ covarInd <- as.data.frame(print(covarInd, showAllLevels = TRUE))
 
 #### Table: Pair-level Covariates ####
 pairTable <- (resultsHam
-              %>% filter(label == "RandomHam")
+              %>% filter(label == "Random")
               %>% replace_na(list(SameGroup = "missing", snpClose = "missing"))
 )
 pairCat <- c("Study", "Nationality", "Sex", "Age", "SmearPos", "HIV", 
@@ -145,7 +145,6 @@ edgesSNPs <- (resultsHam
               %>% filter(label == "HamSNPs")
               %>% select(individualID.1, individualID.2, pScaled,
                          snpDist, snpClose, SameGroup)
-              #Arrange so true edges and high probability edges are drawn first
               %>% arrange(pScaled)
 )
 netSNPs <- graph_from_data_frame(d = edgesSNPs, vertices = nodes, directed = T)

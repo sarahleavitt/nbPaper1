@@ -498,7 +498,7 @@ ggplot(data = monthR0,
 
 
 
-###################### Training Proportion/Sample Size Sensitivity Analysis ######################
+############# Training Proportion/Sample Size Sensitivity Analysis ###############
 
 
 #Initializing dataframes with first run
@@ -690,7 +690,7 @@ ggplot(data = monthR0SS, aes(x = factor(trainingP), y = R0,
 
 
 
-####################### Sampling Date Sensitivity Analysis ###########################
+##################### Sampling Date Sensitivity Analysis #######################
 
 sampleSize <- 500
 resultsSD <- readRDS(paste0("results", sampleSize, "_1SD.rds"))

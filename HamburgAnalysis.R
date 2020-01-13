@@ -31,7 +31,7 @@ hamPair <- readRDS("Datasets/HamburgPair.rds")
 hamPair <- hamPair %>% mutate(snpClose = ifelse(snpDist < 2, TRUE,
                                          ifelse(snpDist > 12, FALSE, NA)))
 
-orderedHam <- hamPair  %>% filter(!is.na(IsolationDiff) & IsolationDiff >= 0)
+orderedHam <- hamPair  %>% filter(!is.na(IsolationDiff) & IsolationDiff > 0)
 
 
 

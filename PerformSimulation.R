@@ -113,7 +113,7 @@ pVar <- "pScaled"
 set.seed(iTask * 1000 + 1)
 
 #Running the simulation
-res <- simRun(multOutbreaks = multOutbreaks, observationDate = observationDate)
+res <- simRun(observationDate = observationDate)
 print("Finished calculating probabilities")
 
 #Adding run ID
@@ -123,7 +123,8 @@ repNumI <- res[[3]] %>% mutate(runID = paste(iTask, 1, sep = "_"))
 coeff <- res[[4]] %>% mutate(runID = paste(iTask, 1, sep = "_"))
 
 #Saving raw results from only the first run
-saveRDS(results, file=paste0("../Simulation_Results/results", sampleSize, "_", iTask, dateID, ".rds"))
+saveRDS(results, file=paste0("../Simulation_Results/results",
+                             sampleSize, "_", iTask, dateID, ".rds"))
 
 print(paste0("Completed run ", 1, " (seed = ", iTask * 1000 + 1, ")"))
 
@@ -137,7 +138,7 @@ for (iteration in 2:nSim){
   set.seed(iTask * 1000 + iteration)
 
   #Running the simulation
-  res <- simRun(multOutbreaks = multOutbreaks, observationDate = observationDate)
+  res <- simRun(observationDate = observationDate)
   print("Finished calculating probabilities")
 
   #Adding run ID
@@ -155,7 +156,10 @@ for (iteration in 2:nSim){
 }
 
 #Saving dataframes with summary of results for all of the runs
-saveRDS(performance, file=paste0("../Simulation_Results/performance", sampleSize, "_", iTask, dateID, ".rds"))
-saveRDS(repNumI, file=paste0("../Simulation_Results/repNumI", sampleSize, "_", iTask, dateID, ".rds"))
-saveRDS(coeff, file=paste0("../Simulation_Results/coefficients", sampleSize, "_", iTask, dateID, ".rds"))
+saveRDS(performance, file=paste0("../Simulation_Results/performance",
+                                 sampleSize, "_", iTask, dateID, ".rds"))
+saveRDS(repNumI, file=paste0("../Simulation_Results/repNumI",
+                             sampleSize, "_", iTask, dateID, ".rds"))
+saveRDS(coeff, file=paste0("../Simulation_Results/coefficients",
+                           sampleSize, "_", iTask, dateID, ".rds"))
 

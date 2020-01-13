@@ -7,7 +7,7 @@
 ################################################################################
 
 
-simRun <- function(multOutbreaks, observationDate) {
+simRun <- function(observationDate) {
 
   #Simulate outbreak  
   obk <- simOutbreak(neg = neg, pi = pi, off.r = off.r, off.p = off.p,
