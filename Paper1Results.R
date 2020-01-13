@@ -7,9 +7,9 @@
 # NB transmission method and reproductive number estimation.
 ################################################################################
 
-rm(list = ls())
+#rm(list = ls())
 options(scipen = 999)
-setwd("~/Boston University/Dissertation/Simulation_Results_11.22.19")
+setwd("~/Boston University/Dissertation/Simulation_Results_1.13.20")
 
 library(dplyr)
 library(tidyr)
@@ -51,10 +51,10 @@ performance <- (performance
                 %>% mutate(Scenario = factor(label,
                                              levels = c("Truth_S1T0.6C1",
                                                         "SNPs_S1T0.6C1",
-                                                        "GenInt1.1/2S1T0.6C1",
-                                                        "GenInt1.3/3.3S1T0.6C1",
-                                                        "GenInt0.5/1.9S1T0.6C1",
-                                                        "RandomS1T0.6C1"),
+                                                        "GenInt1.1/2",
+                                                        "GenInt1.3/3.3",
+                                                        "GenInt0.5/1.9",
+                                                        "Random"),
                                              labels = c("Training: Truth",
                                                         "Training: SNP Distance",
                                                         "Correct Serial Interval",
@@ -66,10 +66,10 @@ results <- (results
             %>% mutate(Scenario = factor(label,
                                          levels = c("Truth_S1T0.6C1",
                                                     "SNPs_S1T0.6C1",
-                                                    "GenInt1.1/2S1T0.6C1",
-                                                    "GenInt1.3/3.3S1T0.6C1",
-                                                    "GenInt0.5/1.9S1T0.6C1",
-                                                    "RandomS1T0.6C1"),
+                                                    "GenInt1.1/2",
+                                                    "GenInt1.3/3.3",
+                                                    "GenInt0.5/1.9",
+                                                    "Random"),
                                          labels = c("Training: Truth",
                                                     "Training: SNP Distance",
                                                     "Correct Serial Interval",
@@ -83,10 +83,10 @@ repNumI <- (repNumI
             %>% mutate(Scenario = factor(label,
                                          levels = c("Truth_S1T0.6C1",
                                                     "SNPs_S1T0.6C1",
-                                                    "GenInt1.1/2S1T0.6C1",
-                                                    "GenInt1.3/3.3S1T0.6C1",
-                                                    "GenInt0.5/1.9S1T0.6C1",
-                                                    "RandomS1T0.6C1"),
+                                                    "GenInt1.1/2",
+                                                    "GenInt1.3/3.3",
+                                                    "GenInt0.5/1.9",
+                                                    "Random"),
                                          labels = c("Training: Truth",
                                                     "Training: SNP Distance",
                                                     "Correct Serial Interval",
@@ -693,7 +693,6 @@ ggplot(data = monthR0SS, aes(x = factor(trainingP), y = R0,
 ##################### Sampling Date Sensitivity Analysis #######################
 
 sampleSize <- 500
-resultsSD <- readRDS(paste0("results", sampleSize, "_1SD.rds"))
 
 #Initializing dataframes
 performanceSD <- NULL
@@ -711,10 +710,10 @@ performanceSD <- (performanceSD
                 %>% mutate(Scenario = factor(label,
                                              levels = c("Truth_S1T0.6C1",
                                                         "SNPs_S1T0.6C1",
-                                                        "GenInt1.1/2S1T0.6C1",
-                                                        "GenInt1.3/3.3S1T0.6C1",
-                                                        "GenInt0.5/1.9S1T0.6C1",
-                                                        "RandomS1T0.6C1"),
+                                                        "GenInt1.1/2",
+                                                        "GenInt1.3/3.3",
+                                                        "GenInt0.5/1.9",
+                                                        "Random"),
                                              labels = c("Training: Truth",
                                                         "Training: SNP Distance",
                                                         "Correct Serial Interval",
@@ -728,10 +727,10 @@ repNumISD <- (repNumISD
             %>% mutate(Scenario = factor(label,
                                          levels = c("Truth_S1T0.6C1",
                                                     "SNPs_S1T0.6C1",
-                                                    "GenInt1.1/2S1T0.6C1",
-                                                    "GenInt1.3/3.3S1T0.6C1",
-                                                    "GenInt0.5/1.9S1T0.6C1",
-                                                    "RandomS1T0.6C1"),
+                                                    "GenInt1.1/2",
+                                                    "GenInt1.3/3.3",
+                                                    "GenInt0.5/1.9",
+                                                    "Random"),
                                          labels = c("Training: Truth",
                                                     "Training: SNP Distance",
                                                     "Correct Serial Interval",

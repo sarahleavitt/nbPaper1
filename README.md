@@ -48,7 +48,7 @@ This program is analogous to PerformSimulation.R but runs multiple iterations of
 
 This program is used to run a sensitivity analysis of the pathogen genome length.
 It simulates one outbreak and then simulates pathogen genomes of various lengths
-multiple times. Then it calculates various summaries of the SNP distances across 
+nSim times. Then it calculates various summaries of the SNP distances across 
 the outbreaks. This is run by "GenomeQsub.qsub" with no inputs.
 
 

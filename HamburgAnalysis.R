@@ -35,7 +35,7 @@ orderedHam <- hamPair  %>% filter(!is.na(IsolationDiff) & IsolationDiff > 0)
 
 
 
-############## Estimating Probabilities #############
+####################### Estimating Probabilities #########################
 
 covariates <- c("Study", "Nationality", "Sex", "Age", "SmearPos", "HIV",
                 "SubstanceAbuse", "Residence", "Milieu", "TimeCat")
