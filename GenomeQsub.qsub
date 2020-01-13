@@ -4,7 +4,7 @@
 #$ -P sv-thesis
 
 #Time limit
-#$ -l h_rt=48:00:00
+#$ -l h_rt=24:00:00
 
 #Name a job
 #$ -N Genome
@@ -14,9 +14,6 @@
 
 #Send email when job ends or aborts
 #$-m ea
-
-#Name the log file
-##$-o SimLog
 
 #This line runs the set of nSim simulations this many times
 #$-t 1-10

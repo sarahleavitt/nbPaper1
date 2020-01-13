@@ -9,7 +9,7 @@ qsub -N FullSimulation SimQsub.qsub 500 1
 qsub -N SampleDate SimQsub.qsub 500 2
 
 #Running the genome length analysis
-qsub -N GenomeQsub.qsub
+#qsub -N GenomeQsub.qsub
 
 #Running with different sample sizes and training proportions
 sampleSize=(50 250 500)

@@ -15,9 +15,6 @@
 #Send email when job ends or aborts
 #$-m e
 
-#Name the log file
-##$-o SimLog
-
 #This line runs the set of nSim simulations this many times
 #$-t 1-10
 
