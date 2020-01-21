@@ -8,7 +8,7 @@
 # The data are cleaned in HamburgPrep.R
 ################################################################################
 
-setwd("~/Boston University/Dissertation")
+setwd("~/Boston University/Dissertation/nbPaper1")
 rm(list = ls())
 set.seed(103020)
 
@@ -19,14 +19,14 @@ library(ggplot2)
 library(devtools)
 
 #Sourcing functions
-load_all("nbTransmission")
-source("nbSimulation/PerformRandom.R")
-source("nbSimulation/PerformInterval.R")
+load_all("../nbTransmission")
+source("../nbSimulation/PerformRandom.R")
+source("../nbSimulation/PerformInterval.R")
 
 
 #Reading in datasets from HamburgPrep.R
-hamInd <- readRDS("Datasets/HamburgInd.rds")
-hamPair <- readRDS("Datasets/HamburgPair.rds")
+hamInd <- readRDS("../Datasets/HamburgInd.rds")
+hamPair <- readRDS("../Datasets/HamburgPair.rds")
 
 hamPair <- hamPair %>% mutate(snpClose = ifelse(snpDist < 2, TRUE,
                                          ifelse(snpDist > 12, FALSE, NA)))
@@ -75,7 +75,7 @@ resultsHam <- bind_rows(resHamCov1, resHamCov2, rComp)
 
 
 #Saving results
-saveRDS(resultsHam, "Datasets/HamburgResults_12.17.19.rds")
+saveRDS(resultsHam, "../Datasets/HamburgResults_12.17.19.rds")
 
 
 
@@ -126,8 +126,8 @@ monthR0H
 
 
 #Saving the confidence interval datasets
-saveRDS(repNumMH, "Datasets/HamburgRtCI_12.17.19.rds")
-saveRDS(monthR0H, "Datasets/HamburgR0CI_12.17.19.rds")
+saveRDS(repNumMH, "../Datasets/HamburgRtCI_12.17.19.rds")
+saveRDS(monthR0H, "../Datasets/HamburgR0CI_12.17.19.rds")
 
 
 
@@ -176,5 +176,5 @@ for(l in corrections){
   monthR0H_c <- bind_rows(monthR0H_c, monthR0H_t)
 }
 
-saveRDS(monthR0H_c, "Datasets/HamburgCorrection_12.17.19.rds")
+saveRDS(monthR0H_c, "../Datasets/HamburgCorrection_12.17.19.rds")
 

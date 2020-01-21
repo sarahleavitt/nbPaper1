@@ -7,7 +7,7 @@
 # The data are cleaned in HamburgPrep.R and analyzed in HamburgAnalysis.R
 ################################################################################
 
-setwd("~/Boston University/Dissertation")
+setwd("~/Boston University/Dissertation/nbPaper1")
 #rm(list = ls())
 options(scipen = 999)
 
@@ -20,12 +20,12 @@ library(RColorBrewer)
 library(pheatmap)
 
 #Reading in cleaned datasets from HamburgPrep.R and results from HamburgAnalysis.R
-hamInd <- readRDS("Datasets/HamburgInd.rds")
-hamPair <- readRDS("Datasets/HamburgPair.rds")
-resultsHam <- readRDS("Datasets/HamburgResults_12.17.19.rds")
-R0CI <- readRDS("Datasets/HamburgR0CI_12.17.19.rds")
-RtCI <- readRDS("Datasets/HamburgRtCI_12.17.19.rds")
-R0Correction <- readRDS("Datasets/HamburgCorrection_12.17.19.rds")
+hamInd <- readRDS("../Datasets/HamburgInd.rds")
+hamPair <- readRDS("../Datasets/HamburgPair.rds")
+resultsHam <- readRDS("../Datasets/HamburgResults_12.17.19.rds")
+R0CI <- readRDS("../Datasets/HamburgR0CI_12.17.19.rds")
+RtCI <- readRDS("../Datasets/HamburgRtCI_12.17.19.rds")
+R0Correction <- readRDS("../Datasets/HamburgCorrection_12.17.19.rds")
 
 
 #Making clear scenario labels
@@ -126,7 +126,7 @@ ggplot(data = hamInd) +
   ylab("Number of Cases") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 30, hjust = 1, size = 10)) +
-  ggsave(file = "Figures/Hamburg_Years.tiff",
+  ggsave(file = "../Figures/Hamburg_Years.tiff",
          width = 4, height = 3, units = "in", dpi = 300)
 
 
@@ -191,7 +191,7 @@ netRand.adj <- get.adjacency(netRand, attr = "pScaled", sparse = FALSE)
 
 
 
-png("Figures/HeatmapRand.png", width = 4, height = 4,
+png("../Figures/HeatmapRand.png", width = 4, height = 4,
     units = "in", res = 300)
 par(mar = c(0, 0, 1, 0))
 pheatmap(t(netRand.adj), cluster_rows = FALSE, cluster_cols = FALSE,
@@ -199,7 +199,7 @@ pheatmap(t(netRand.adj), cluster_rows = FALSE, cluster_cols = FALSE,
          col=brewer.pal(9,"Blues"), breaks = colBreaks, legend = FALSE)
 dev.off()
 
-png("Figures/HeatmapSI.png", width = 4.4, height = 4,
+png("../Figures/HeatmapSI.png", width = 4.4, height = 4,
     units = "in", res = 300)
 par(mar = c(0, 0, 1, 0))
 pheatmap(t(netSI.adj), cluster_rows = FALSE, cluster_cols = FALSE,
@@ -207,7 +207,7 @@ pheatmap(t(netSI.adj), cluster_rows = FALSE, cluster_cols = FALSE,
          col=brewer.pal(9,"Blues"), breaks = colBreaks)
 dev.off()
 
-png("Figures/HeatmapSNPs.png", width = 4, height = 4,
+png("../Figures/HeatmapSNPs.png", width = 4, height = 4,
     units = "in", res = 300)
 par(mar = c(0, 0, 1, 0))
 pheatmap(t(netSNPs.adj), cluster_rows = FALSE, cluster_cols = FALSE,
@@ -215,7 +215,7 @@ pheatmap(t(netSNPs.adj), cluster_rows = FALSE, cluster_cols = FALSE,
          col=brewer.pal(9,"Blues"), breaks = colBreaks, legend = FALSE)
 dev.off()
 
-png("Figures/HeatmapContact.png", width = 4, height = 4,
+png("../Figures/HeatmapContact.png", width = 4, height = 4,
     units = "in", res = 300)
 par(mar = c(0, 0, 1, 0))
 pheatmap(t(netContact.adj), cluster_rows = FALSE, cluster_cols = FALSE,
@@ -248,7 +248,7 @@ ggplot(data = RtCI, aes(x = timeRank, y = Rt)) +
   geom_vline(aes(xintercept = monthCut1), linetype = 2, size = 0.7) +
   geom_vline(aes(xintercept = monthCut2), linetype = 2, size = 0.7) +
   geom_hline(data = R0CI, aes(yintercept = RtAvg), size = 0.7) +
-  ggsave(file = "Figures/Hamburg_Rt.tiff",
+  ggsave(file = "../Figures/Hamburg_Rt.tiff",
          width = 8, height = 5, units = "in", dpi = 300)
 
 
@@ -267,7 +267,7 @@ ggplot(data = R0CI, aes(x = Scenario, y = RtAvg)) +
         axis.title.x = element_blank(),
         axis.title.y = element_text(margin = margin(t = 0, r = 10, b = 0, l = 0))) +
   geom_hline(aes(yintercept = 1), linetype = 2) +
-  ggsave(file = "Figures/Hamburg_R0.tiff",
+  ggsave(file = "../Figures/Hamburg_R0.tiff",
          width = 5, height = 4, units = "in", dpi = 300)
 
 
