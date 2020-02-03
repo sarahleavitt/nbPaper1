@@ -377,38 +377,30 @@ as.data.frame(performTable)
 #### Figure: Violin Plot of Performance Metrics ####
 
 ggplot(data = longData %>% filter(!metric %in% c("Sensitivity", "Specificity")),
-       aes(x = Scenario, y = value, fill = Scenario, color = Scenario)) +
-  geom_violin(alpha = 0.75) +
-  scale_y_continuous(name = "Value") +
-  facet_wrap(~ metric, nrow = 3, ncol = 3) +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 10),
-        legend.position = "none") +
-  ggsave(file = "../Figures/Metrics.tiff",
-         width = 8, height = 5, units = "in", dpi = 300)
-
-## Legend instead of axis labels ##
-ggplot(data = longData, aes(x = Scenario, y = value, fill = Scenario, color = Scenario)) +
-  geom_violin(alpha = 0.75) +
-  scale_x_discrete(name = "Scenario", breaks = NULL) +
-  scale_y_continuous(name = "Value") +
-  facet_wrap(~ metric, nrow = 3, ncol = 3) +
-  theme_bw() +
-  theme(legend.position = "bottom", legend.title = element_blank(),
-        legend.spacing.x = unit(0.25, "cm")) +
-  ggsave(file = "../Figures/Metrics.png",
-         width = 8, height = 5, units = "in", dpi = 300)
-
-## BLACK AND WHITE VERSION ##
-ggplot(data = longData %>% filter(!metric %in% c("Sensitivity", "Specificity")),
        aes(x = Scenario, y = value)) +
   geom_violin(alpha = 0.75, fill = "grey") +
   scale_y_continuous(name = "Value") +
   facet_wrap(~ metric, nrow = 3, ncol = 3) +
   theme_bw() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 10),
+  theme(axis.title.y = element_text(margin = margin(t = 0, r = 10, b = 0, l = 0)),
+        axis.text.x = element_text(angle = 45, hjust = 1),
         legend.position = "none") +
-  ggsave(file = "../Figures/Metrics_BW.png",
+  ggsave(file = "../Figures/Metrics.tiff",
+         width = 8, height = 5, units = "in", dpi = 300)
+
+
+## COLOR VERSION ##
+ggplot(data = longData, aes(x = Scenario, y = value, fill = Scenario, color = Scenario)) +
+  geom_violin(alpha = 0.75) +
+  scale_x_discrete(name = "Scenario", breaks = NULL) +
+  scale_y_continuous(name = "Value") +
+  facet_wrap(~ metric, nrow = 3, ncol = 3) +
+  theme_bw(base_size = 16) +
+  theme(axis.title.y = element_text(margin = margin(t = 0, r = 10, b = 0, l = 0)),
+        legend.position = "bottom",
+        legend.title = element_blank(),
+        legend.spacing.x = unit(0.25, "cm")) +
+  ggsave(file = "../Figures/Metrics_color.png",
          width = 8, height = 5, units = "in", dpi = 300)
 
 
@@ -463,22 +455,6 @@ monthSummaryR0
 
 #### Figure: Violin Plot of Average Rt ####
 
-ggplot(data = monthR0) +
-  geom_violin(aes(x = Scenario, y = R0, fill = Scenario, color = Scenario),
-              alpha = 0.5, draw_quantiles = 0.5) +
-  scale_x_discrete(name = "Scenario") +
-  scale_y_continuous(name = "Average Effective Reproductive Number") +
-  geom_hline(aes(yintercept = off.r), linetype = 2, size = 1) +
-  theme_bw() +
-  theme(axis.title.y = element_text(margin = margin(t = 0, r = 10, b = 0, l = 0)),
-        axis.title.x = element_blank(),
-        axis.text.x = element_text(angle = 30, hjust = 1, size = 10),
-        legend.position = "none") +
-  ggsave(file = "../Figures/RepNum.tiff",
-         width = 5, height = 4, units = "in", dpi = 300)
-
-
-## BLACK AND WHITE VERSION ##
 ggplot(data = monthR0,
        aes(x = Scenario, y = R0)) +
   geom_violin(alpha = 0.5, draw_quantiles = 0.5, fill = "grey") +
@@ -490,8 +466,23 @@ ggplot(data = monthR0,
         axis.title.x = element_blank(),
         axis.text.x = element_text(angle = 30, hjust = 1, size = 10),
         legend.position = "none") +
-  ggsave(file = "../Figures/RepNum_BW.png",
+  ggsave(file = "../Figures/RepNum.tiff",
          width = 5, height = 4, units = "in", dpi = 300)
+
+## COLOR VERSION ##
+ggplot(data = monthR0) +
+  geom_violin(aes(x = Scenario, y = R0, fill = Scenario, color = Scenario),
+              alpha = 0.5, draw_quantiles = 0.5) +
+  scale_x_discrete(name = "Scenario", breaks = NULL) +
+  scale_y_continuous(name = "Average Effective Reproductive Number") +
+  geom_hline(aes(yintercept = off.r), linetype = 2, size = 1) +
+  theme_bw(base_size = 14) +
+  theme(axis.title.y = element_text(margin = margin(t = 0, r = 10, b = 0, l = 0)),
+        legend.position = "bottom",
+        legend.title = element_blank(),
+        legend.spacing.x = unit(0.25, "cm")) +
+  ggsave(file = "../Figures/RepNum_color.png",
+         width = 7, height = 5, units = "in", dpi = 300)
 
 
 
@@ -569,6 +560,45 @@ longDataSS <- (performanceSS
 
 
 
+#### Figure: Boxplots of Metrics by Training Proportion and Size ####
+
+lines <- cbind.data.frame(metric = c("Area Under the ROC", "Proportion in Top 25%"),
+                          lines = c(0.9, 0.9))
+
+ggplot(data = longDataSS %>% filter(goldStandard == "SNP Distance",
+                                    metric %in% c("Area Under the ROC", "Proportion in Top 25%")),
+       aes(x = factor(trainingP), y = value)) +
+  facet_grid(metric ~ nCasesR, scales = "free_y") +
+  theme_bw() +
+  geom_boxplot(alpha = 0.5, fill = "grey") +
+  geom_hline(aes(yintercept = 0.9), linetype = 2, size = 0.5) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1),
+        axis.title.x = element_text(margin = margin(t = 5, r = 0, b = 0, l = 0)),
+        legend.position = "none") +
+  labs(y = "Value", x = "Proportion of Cases in Training Dataset") +
+  ggsave(file = "../Figures/SampleSize_MetricsN.tiff",
+         width = 9, height = 4, units = "in", dpi = 300)
+
+
+## COLOR VERSION ##
+ggplot(data = longDataSS %>% filter(goldStandard == "SNP Distance",
+                                    metric %in% c("Area Under the ROC", "Proportion in Top 25%")),
+       aes(x = factor(trainingP), y = value, fill = trainingP, color = trainingP)) +
+  facet_grid(metric ~ nCasesR, scales = "free_y") +
+  theme_bw() +
+  geom_boxplot(alpha = 0.5) +
+  geom_hline(aes(yintercept = 0.9), linetype = 2, size = 0.5) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1),
+        axis.title.x = element_text(margin = margin(t = 5, r = 0, b = 0, l = 0)),
+        legend.position = "none") +
+  labs(y = "Value", x = "Proportion of Cases in Training Dataset") +
+  ggsave(file = "../Figures/SampleSize_MetricsN_color.png",
+         width = 9, height = 4, units = "in", dpi = 300)
+
+
+
+
+
 #### Supplementary Figure: Boxplot of Metrics by Training Proportion ####
 
 ggplot(data = longDataSS, aes(x = factor(trainingP), y = value,
@@ -584,42 +614,6 @@ ggplot(data = longDataSS, aes(x = factor(trainingP), y = value,
   scale_color_discrete(name = "Training Set") +
   ggsave(file = "../Figures/SampleSize_MetricsP.png",
          width = 8, height = 5, units = "in", dpi = 300)
-
-
-
-#### Figure: Boxplots of Metrics by Training Proportion and Size ####
-
-lines <- cbind.data.frame(metric = c("Area Under the ROC", "Proportion in Top 25%"),
-                          lines = c(0.9, 0.9))
-
-ggplot(data = longDataSS %>% filter(goldStandard == "SNP Distance",
-                                  metric %in% c("Area Under the ROC", "Proportion in Top 25%")),
-       aes(x = factor(trainingP), y = value, fill = trainingP, color = trainingP)) +
-  facet_grid(metric ~ nCasesR, scales = "free_y") +
-  theme_bw() +
-  geom_boxplot(alpha = 0.5) +
-  geom_hline(data = lines, aes(yintercept = lines), linetype = 2, size = 0.5) +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5),
-        axis.title.x = element_text(margin = margin(t = 5, r = 0, b = 0, l = 0)),
-        legend.position = "none") +
-  labs(y = "Value", x = "Proportion of Cases in Training Dataset") +
-  ggsave(file = "../Figures/SampleSize_MetricsN.tiff",
-         width = 9, height = 4, units = "in", dpi = 300)
-
-## BLACK AND WHITE VERSION ##
-ggplot(data = longDataSS %>% filter(goldStandard == "SNP Distance",
-                                  metric %in% c("Area Under the ROC", "Proportion in Top 25%")),
-       aes(x = factor(trainingP), y = value)) +
-  facet_grid(metric ~ nCasesR, scales = "free_y") +
-  theme_bw() +
-  geom_boxplot(alpha = 0.5, fill = "grey") +
-  geom_hline(aes(yintercept = 0.9), linetype = 2, size = 0.5) +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1),
-        axis.title.x = element_text(margin = margin(t = 5, r = 0, b = 0, l = 0)),
-        legend.position = "none") +
-  labs(y = "Value", x = "Proportion of Cases in Training Dataset") +
-  ggsave(file = "../Figures/SampleSize_MetricsN_BW.png",
-         width = 9, height = 4, units = "in", dpi = 300)
 
 
 
