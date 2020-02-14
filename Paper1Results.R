@@ -395,12 +395,27 @@ ggplot(data = longData, aes(x = Scenario, y = value, fill = Scenario, color = Sc
   scale_x_discrete(name = "Scenario", breaks = NULL) +
   scale_y_continuous(name = "Value") +
   facet_wrap(~ metric, nrow = 3, ncol = 3) +
-  theme_bw(base_size = 16) +
+  theme_bw() +
   theme(axis.title.y = element_text(margin = margin(t = 0, r = 10, b = 0, l = 0)),
         legend.position = "bottom",
         legend.title = element_blank(),
         legend.spacing.x = unit(0.25, "cm")) +
   ggsave(file = "../Figures/Metrics_color.png",
+         width = 8, height = 5, units = "in", dpi = 300)
+
+
+## PRESENTATION VERSION ##
+ggplot(data = longData, aes(x = Scenario, y = value, fill = Scenario, color = Scenario)) +
+  geom_violin(alpha = 0.75) +
+  scale_x_discrete(name = "Scenario", breaks = NULL) +
+  scale_y_continuous(name = "Value") +
+  facet_wrap(~ metric, nrow = 3, ncol = 3) +
+  theme_bw(base_size = 16) +
+  theme(axis.title.y = element_text(margin = margin(t = 0, r = 10, b = 0, l = 0)),
+        legend.position = "bottom",
+        legend.title = element_blank(),
+        legend.spacing.x = unit(0.25, "cm")) +
+  ggsave(file = "../Figures/Metrics_pres.png",
          width = 8, height = 5, units = "in", dpi = 300)
 
 
@@ -476,13 +491,29 @@ ggplot(data = monthR0) +
   scale_x_discrete(name = "Scenario", breaks = NULL) +
   scale_y_continuous(name = "Average Effective Reproductive Number") +
   geom_hline(aes(yintercept = off.r), linetype = 2, size = 1) +
-  theme_bw(base_size = 14) +
+  theme_bw() +
   theme(axis.title.y = element_text(margin = margin(t = 0, r = 10, b = 0, l = 0)),
         legend.position = "bottom",
         legend.title = element_blank(),
         legend.spacing.x = unit(0.25, "cm")) +
   ggsave(file = "../Figures/RepNum_color.png",
          width = 7, height = 5, units = "in", dpi = 300)
+
+## PRESENTATION VERSION ##
+ggplot(data = monthR0) +
+  geom_violin(aes(x = Scenario, y = R0, fill = Scenario, color = Scenario),
+              alpha = 0.5, draw_quantiles = 0.5) +
+  scale_x_discrete(name = "Scenario", breaks = NULL) +
+  scale_y_continuous(name = "Average Effective Reproductive Number") +
+  geom_hline(aes(yintercept = off.r), linetype = 2, size = 1) +
+  theme_bw(base_size = 14) +
+  theme(axis.title.y = element_text(margin = margin(t = 0, r = 10, b = 0, l = 0)),
+        legend.position = "bottom",
+        legend.title = element_blank(),
+        legend.spacing.x = unit(0.25, "cm")) +
+  ggsave(file = "../Figures/RepNum_pres.png",
+         width = 7, height = 5, units = "in", dpi = 300)
+
 
 
 
