@@ -1,7 +1,7 @@
 # nbPaper1
 
 This directory contains the code to produce the results for Leavitt et al. 2020, 
-published in ??? (LINK HERE). It contains code to run the simulations assessing 
+published in IJE (LINK HERE). It contains code to run the simulations assessing 
 the performance of the naive Bayes transmission method including estimating the 
 reproductive number and the application to a TB outbreak in Hamburg, Germany. 
 These programs use the nbTransmission R package 
