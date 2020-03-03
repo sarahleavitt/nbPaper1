@@ -129,14 +129,15 @@ ggplot(data = hamInd) +
   ggsave(file = "../Figures/Hamburg_Years.tiff",
          width = 4, height = 3, units = "in", dpi = 300)
 
+## PRESENTATION VERSION ##
 ggplot(data = hamInd) +
   geom_bar(aes(x = IsolationYear)) +
   xlab("Isolation Year") +
   ylab("Number of Cases") +
-  theme_bw() +
+  theme_bw(base_size = 14) +
   theme(axis.text.x = element_text(angle = 30, hjust = 1, size = 10)) +
-  ggsave(file = "../Figures/Hamburg_Years.png",
-         width = 5, height = 4, units = "in", dpi = 300)
+  ggsave(file = "../Figures/Hamburg_Years_pres.png",
+         width = 4, height = 3, units = "in", dpi = 300)
 
 
 
@@ -261,6 +262,7 @@ ggplot(data = RtCI, aes(x = timeRank, y = Rt)) +
          width = 8, height = 5, units = "in", dpi = 300)
 
 
+## PRESENTATION VERSION ##
 ggplot(data = RtCI, aes(x = timeRank, y = Rt)) +
   facet_wrap(~ Scenario, scales = "free_y") +
   geom_point() +
@@ -269,13 +271,14 @@ ggplot(data = RtCI, aes(x = timeRank, y = Rt)) +
   scale_y_continuous(name = "Monthly Effective Reproductive Number") + 
   scale_x_continuous(name = "Isolation Year", breaks = seq(0, 167, 12),
                      labels = seq(1997, 2010, 1)) +
-  theme_bw() +
+  theme_bw(base_size = 14) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   geom_vline(aes(xintercept = monthCut1), linetype = 2, size = 0.7) +
   geom_vline(aes(xintercept = monthCut2), linetype = 2, size = 0.7) +
   geom_hline(data = R0CI, aes(yintercept = RtAvg), size = 0.7) +
-  ggsave(file = "../Figures/Hamburg_Rt.png",
-         width = 8, height = 5, units = "in", dpi = 300)
+  ggsave(file = "../Figures/Hamburg_Rt_pres.png",
+         width = 9, height = 5, units = "in", dpi = 300)
+
 
 
 #### Supplementary Table: Average Rt ####
@@ -296,19 +299,19 @@ ggplot(data = R0CI, aes(x = Scenario, y = RtAvg)) +
   ggsave(file = "../Figures/Hamburg_R0.tiff",
          width = 5, height = 4, units = "in", dpi = 300)
 
-
+## PRESENTATION VERSION ##
 ggplot(data = R0CI, aes(x = Scenario, y = RtAvg)) +
   geom_point(size = 2) +
   geom_errorbar(aes(ymin = ciLower, ymax = ciUpper), width = 0.3) +
   scale_y_continuous(name = "Average Effective Reproductive Number", 
                      limits = c(0.5, 1.5)) +
-  theme_bw() +
+  theme_bw(base_size = 14) +
   theme(axis.text.x = element_text(angle = 30, hjust = 1, size = 10),
         axis.title.x = element_blank(),
         axis.title.y = element_text(margin = margin(t = 0, r = 10, b = 0, l = 0))) +
   geom_hline(aes(yintercept = 1), linetype = 2) +
-  ggsave(file = "../Figures/Hamburg_R0.png",
-         width = 5, height = 4, units = "in", dpi = 300)
+  ggsave(file = "../Figures/Hamburg_R0_pres.png",
+         width = 5, height = 4.5, units = "in", dpi = 300)
 
 
 
