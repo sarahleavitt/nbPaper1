@@ -5,9 +5,10 @@ published in IJE (https://doi.org/10.1093/ije/dyaa031).
 It contains code to run the simulations assessing 
 the performance of the naive Bayes transmission method including estimating the 
 reproductive number and the application to a TB outbreak in Hamburg, Germany. 
-These programs use the nbTransmission R package 
-(https://github.com/sarahleavitt/nbTransmission) as well as the simulation programs 
-in the nbSimulation directory (https://github.com/sarahleavitt/nbSimulation).
+These programs use the nbTransmission R package available
+on CRAN or GitHub (https://github.com/sarahleavitt/nbTransmission)
+as well as the simulation programs in the nbSimulation directory
+(https://github.com/sarahleavitt/nbSimulation).
  
 
 ## Simulation Programs
